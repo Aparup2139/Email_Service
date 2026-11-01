@@ -1,6 +1,6 @@
 # Step 1 verification results
 
-Verification date: **1 November 2026**, Asia/Calcutta (UTC+05:30). These checks were performed by the AI agent in WSL, not personally by the student. Student verification remains pending.
+Verification date: **1 November 2026**, Asia/Calcutta (UTC+05:30). The original retained command records below were produced by the AI agent in WSL. A later student-provided transcript independently records the demonstration and test execution; it is documented separately below. Personal code understanding remains pending.
 
 ## Environment
 
@@ -52,10 +52,25 @@ Additional GCC checks use `-std=c11 -Wall -Wextra -Wpedantic -fanalyzer` while c
 17. SIGINT and SIGTERM stop an idle server within the two-second test bound.
 18. SIGINT and SIGTERM stop a server with a stalled connection within the seven-second test bound.
 
+## Student-provided execution evidence
+
+The student supplied a terminal transcript and authorised preserving it. [student-step1-terminal.txt](evidence/student-step1-terminal.txt) is an unaltered copy of that attachment; it is not an agent rerun or an independently captured recording of the student's terminal. The transcript contains no command timestamps, so the date above records its receipt/review rather than an independently verified execution time.
+
+| Student command/activity | What the supplied transcript establishes |
+|---|---|
+| `make`, `make debug`, `make sanitize` | Compilation completed without displayed error or warning diagnostics |
+| Manual server run on port 5050 | Server listened, accepted two connections, echoed 21 and 19 bytes, and printed `Server stopped.` after Ctrl+C; the corresponding client-terminal output is not included |
+| `make test` | 18 tests, 11.465 seconds, final `OK` |
+| `make MODE=debug test` | 18 tests, 11.523 seconds, final `OK` |
+| `make MODE=sanitize test` | 18 tests, 12.534 seconds, final `OK`; no sanitizer diagnostics displayed |
+| `make test TEST_ARGS="--port 55050"` | All 18 methods are marked `ok`; runner reports 18 tests in 11.649 seconds, but the final summary/status and shell prompt are absent from the pasted text |
+
+This establishes student execution of the three build-mode test suites and a manual server demonstration. It does not establish a code explanation, independent modification, or a separately observed final exit status for the truncated custom-port run. The original agent evidence files and index remain unchanged.
+
 ## Evidence integrity and limits
 
 The `evidence/` text files contain actual commands, exit statuses, captured stdout/stderr, timestamps, and wrapper durations. [summary.json](evidence/summary.json) indexes these records. Environment-version outputs are retained alongside them. Test subprocess logs are inspected during each test and temporary per-server logs are removed by the harness; the retained suite logs contain the actual test outcomes, not every individual server transcript.
 
-No screenshots or results were fabricated. Automated execution does not establish the student's ability to explain the code. The student still needs to run the README demonstration and practise the architecture questions before recording personal verification.
+No screenshots or results were fabricated. Automated execution does not establish the student's ability to explain the code. The student has now supplied demonstration/test execution evidence and still needs to practise the architecture questions before recording verified understanding.
 
 The test suite has not certified simultaneous request handling, LAN deployment, accounts, storage, encryption, full resource-exhaustion recovery, every partial-send condition, or resistance to indefinitely progressing slow clients. The server is sequential, receive/send limits are inactivity waits, and `connect()` uses the OS default timeout. Passing checks reduce known risk; they do not prove the program is failproof.

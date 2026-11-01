@@ -95,7 +95,9 @@ See [test results](docs/test-results.md) for the actual verification commands an
 
 Start with [architecture and viva notes](docs/architecture.md), then read the [wire protocol](docs/protocol.md). AI assistance is disclosed in the [AI usage log](docs/ai-usage-log.md); automated checks and personal student verification are recorded separately.
 
-Git has been initialised locally. No commit, remote, or global Git configuration was created or changed. Build outputs are ignored; source, documentation, tests, and logs remain visible to Git.
+Git was initialised locally during Step 1. The student subsequently committed the project and connected `origin` to `https://github.com/Aparup2139/Email_Service.git`; the working branch is now `main`. Build outputs are ignored; source, documentation, tests, and logs remain visible to Git.
+
+The next milestone is specified in [the Step 2 implementation plan](Plan/Step2.md). It is a plan, not a claim that account features already exist.
 
 ## Errors and current limits
 

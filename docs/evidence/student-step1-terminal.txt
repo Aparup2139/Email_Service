@@ -1,0 +1,129 @@
+aparup@LAPTOP-OO4SFC6S:/mnt/d/Emai_service_project$ make
+gcc -D_POSIX_C_SOURCE=200809L -Iinclude -std=c11 -Wall -Wextra -Wpedantic -O2 -MMD -MP -c src/server.c -o build/normal/server.o
+gcc -D_POSIX_C_SOURCE=200809L -Iinclude -std=c11 -Wall -Wextra -Wpedantic -O2 -MMD -MP -c src/net_io.c -o build/normal/net_io.o
+gcc build/normal/server.o build/normal/net_io.o   -o build/normal/server
+gcc -D_POSIX_C_SOURCE=200809L -Iinclude -std=c11 -Wall -Wextra -Wpedantic -O2 -MMD -MP -c src/client.c -o build/normal/client.o
+gcc build/normal/client.o build/normal/net_io.o   -o build/normal/client
+aparup@LAPTOP-OO4SFC6S:/mnt/d/Emai_service_project$ ./build/normal/server --bind 127.0.0.1 --port 5050
+Listening on 127.0.0.1:5050
+Client connected.
+Echoed 21 bytes
+Client connected.
+Echoed 19 bytes
+^CServer stopped.
+aparup@LAPTOP-OO4SFC6S:/mnt/d/Emai_service_project$ make debug 
+make MODE=debug all
+make[1]: Entering directory '/mnt/d/Emai_service_project'
+gcc -D_POSIX_C_SOURCE=200809L -Iinclude -std=c11 -Wall -Wextra -Wpedantic -O0 -g3 -MMD -MP -c src/server.c -o build/debug/server.o
+gcc -D_POSIX_C_SOURCE=200809L -Iinclude -std=c11 -Wall -Wextra -Wpedantic -O0 -g3 -MMD -MP -c src/net_io.c -o build/debug/net_io.o
+gcc build/debug/server.o build/debug/net_io.o   -o build/debug/server
+gcc -D_POSIX_C_SOURCE=200809L -Iinclude -std=c11 -Wall -Wextra -Wpedantic -O0 -g3 -MMD -MP -c src/client.c -o build/debug/client.o
+gcc build/debug/client.o build/debug/net_io.o   -o build/debug/client
+make[1]: Leaving directory '/mnt/d/Emai_service_project'
+aparup@LAPTOP-OO4SFC6S:/mnt/d/Emai_service_project$ make sanitize
+make MODE=sanitize all
+make[1]: Entering directory '/mnt/d/Emai_service_project'
+gcc -D_POSIX_C_SOURCE=200809L -Iinclude -std=c11 -Wall -Wextra -Wpedantic -O1 -g3 -fsanitize=address,undefined -fno-sanitize-recover=all -fno-omit-frame-pointer -MMD -MP -c src/server.c -o build/sanitize/server.o
+gcc -D_POSIX_C_SOURCE=200809L -Iinclude -std=c11 -Wall -Wextra -Wpedantic -O1 -g3 -fsanitize=address,undefined -fno-sanitize-recover=all -fno-omit-frame-pointer -MMD -MP -c src/net_io.c -o build/sanitize/net_io.o
+gcc build/sanitize/server.o build/sanitize/net_io.o -fsanitize=address,undefined  -o build/sanitize/server
+gcc -D_POSIX_C_SOURCE=200809L -Iinclude -std=c11 -Wall -Wextra -Wpedantic -O1 -g3 -fsanitize=address,undefined -fno-sanitize-recover=all -fno-omit-frame-pointer -MMD -MP -c src/client.c -o build/sanitize/client.o
+gcc build/sanitize/client.o build/sanitize/net_io.o -fsanitize=address,undefined  -o build/sanitize/client
+make[1]: Leaving directory '/mnt/d/Emai_service_project'
+aparup@LAPTOP-OO4SFC6S:/mnt/d/Emai_service_project$ make test
+python3 tests/test_network.py --bin-dir build/normal 
+test_binary_payload_one_buffer (__main__.NetworkTests.test_binary_payload_one_buffer) ... ok
+test_clean_eof_and_truncated_frames (__main__.NetworkTests.test_clean_eof_and_truncated_frames) ... ok
+test_client_receive_timeout (__main__.NetworkTests.test_client_receive_timeout) ... ok
+test_fragmented_frame (__main__.NetworkTests.test_fragmented_frame) ... ok
+test_help (__main__.NetworkTests.test_help) ... ok
+test_idle_shutdown (__main__.NetworkTests.test_idle_shutdown) ... ok
+test_invalid_arguments (__main__.NetworkTests.test_invalid_arguments) ... ok
+test_invalid_frame_lengths (__main__.NetworkTests.test_invalid_frame_lengths) ... ok
+test_malformed_responses (__main__.NetworkTests.test_malformed_responses) ... ok
+test_minimum_and_maximum_payload (__main__.NetworkTests.test_minimum_and_maximum_payload) ... ok
+test_mismatched_response (__main__.NetworkTests.test_mismatched_response) ... ok
+test_port_already_in_use (__main__.NetworkTests.test_port_already_in_use) ... ok
+test_reset_before_reading_response (__main__.NetworkTests.test_reset_before_reading_response) ... ok
+test_sequential_clients (__main__.NetworkTests.test_sequential_clients) ... ok
+test_shutdown_with_stalled_client (__main__.NetworkTests.test_shutdown_with_stalled_client) ... ok
+test_stalled_client_timeout_and_recovery (__main__.NetworkTests.test_stalled_client_timeout_and_recovery) ... ok
+test_unavailable_server (__main__.NetworkTests.test_unavailable_server) ... ok
+test_unicode_message_uses_byte_length (__main__.NetworkTests.test_unicode_message_uses_byte_length) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 11.465s
+
+OK
+aparup@LAPTOP-OO4SFC6S:/mnt/d/Emai_service_project$ make MODE=debug test
+python3 tests/test_network.py --bin-dir build/debug 
+test_binary_payload_one_buffer (__main__.NetworkTests.test_binary_payload_one_buffer) ... ok
+test_clean_eof_and_truncated_frames (__main__.NetworkTests.test_clean_eof_and_truncated_frames) ... ok
+test_client_receive_timeout (__main__.NetworkTests.test_client_receive_timeout) ... ok
+test_fragmented_frame (__main__.NetworkTests.test_fragmented_frame) ... ok
+test_help (__main__.NetworkTests.test_help) ... ok
+test_idle_shutdown (__main__.NetworkTests.test_idle_shutdown) ... ok
+test_invalid_arguments (__main__.NetworkTests.test_invalid_arguments) ... ok
+test_invalid_frame_lengths (__main__.NetworkTests.test_invalid_frame_lengths) ... ok
+test_malformed_responses (__main__.NetworkTests.test_malformed_responses) ... ok
+test_minimum_and_maximum_payload (__main__.NetworkTests.test_minimum_and_maximum_payload) ... ok
+test_mismatched_response (__main__.NetworkTests.test_mismatched_response) ... ok
+test_port_already_in_use (__main__.NetworkTests.test_port_already_in_use) ... ok
+test_reset_before_reading_response (__main__.NetworkTests.test_reset_before_reading_response) ... ok
+test_sequential_clients (__main__.NetworkTests.test_sequential_clients) ... ok
+test_shutdown_with_stalled_client (__main__.NetworkTests.test_shutdown_with_stalled_client) ... ok
+test_stalled_client_timeout_and_recovery (__main__.NetworkTests.test_stalled_client_timeout_and_recovery) ... ok
+test_unavailable_server (__main__.NetworkTests.test_unavailable_server) ... ok
+test_unicode_message_uses_byte_length (__main__.NetworkTests.test_unicode_message_uses_byte_length) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 11.523s
+
+OK
+aparup@LAPTOP-OO4SFC6S:/mnt/d/Emai_service_project$ make MODE=sanitize test
+python3 tests/test_network.py --bin-dir build/sanitize 
+test_binary_payload_one_buffer (__main__.NetworkTests.test_binary_payload_one_buffer) ... ok
+test_clean_eof_and_truncated_frames (__main__.NetworkTests.test_clean_eof_and_truncated_frames) ... ok
+test_client_receive_timeout (__main__.NetworkTests.test_client_receive_timeout) ... ok
+test_fragmented_frame (__main__.NetworkTests.test_fragmented_frame) ... ok
+test_help (__main__.NetworkTests.test_help) ... ok
+test_idle_shutdown (__main__.NetworkTests.test_idle_shutdown) ... ok
+test_invalid_arguments (__main__.NetworkTests.test_invalid_arguments) ... ok
+test_invalid_frame_lengths (__main__.NetworkTests.test_invalid_frame_lengths) ... ok
+test_malformed_responses (__main__.NetworkTests.test_malformed_responses) ... ok
+test_minimum_and_maximum_payload (__main__.NetworkTests.test_minimum_and_maximum_payload) ... ok
+test_mismatched_response (__main__.NetworkTests.test_mismatched_response) ... ok
+test_port_already_in_use (__main__.NetworkTests.test_port_already_in_use) ... ok
+test_reset_before_reading_response (__main__.NetworkTests.test_reset_before_reading_response) ... ok
+test_sequential_clients (__main__.NetworkTests.test_sequential_clients) ... ok
+test_shutdown_with_stalled_client (__main__.NetworkTests.test_shutdown_with_stalled_client) ... ok
+test_stalled_client_timeout_and_recovery (__main__.NetworkTests.test_stalled_client_timeout_and_recovery) ... ok
+test_unavailable_server (__main__.NetworkTests.test_unavailable_server) ... ok
+test_unicode_message_uses_byte_length (__main__.NetworkTests.test_unicode_message_uses_byte_length) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 12.534s
+
+OK
+aparup@LAPTOP-OO4SFC6S:/mnt/d/Emai_service_project$ make test TEST_ARGS="--port 55050"
+python3 tests/test_network.py --bin-dir build/normal --port 55050
+test_binary_payload_one_buffer (__main__.NetworkTests.test_binary_payload_one_buffer) ... ok
+test_clean_eof_and_truncated_frames (__main__.NetworkTests.test_clean_eof_and_truncated_frames) ... ok
+test_client_receive_timeout (__main__.NetworkTests.test_client_receive_timeout) ... ok
+test_fragmented_frame (__main__.NetworkTests.test_fragmented_frame) ... ok
+test_help (__main__.NetworkTests.test_help) ... ok
+test_idle_shutdown (__main__.NetworkTests.test_idle_shutdown) ... ok
+test_invalid_arguments (__main__.NetworkTests.test_invalid_arguments) ... ok
+test_invalid_frame_lengths (__main__.NetworkTests.test_invalid_frame_lengths) ... ok
+test_malformed_responses (__main__.NetworkTests.test_malformed_responses) ... ok
+test_minimum_and_maximum_payload (__main__.NetworkTests.test_minimum_and_maximum_payload) ... ok
+test_mismatched_response (__main__.NetworkTests.test_mismatched_response) ... ok
+test_port_already_in_use (__main__.NetworkTests.test_port_already_in_use) ... ok
+test_reset_before_reading_response (__main__.NetworkTests.test_reset_before_reading_response) ... ok
+test_sequential_clients (__main__.NetworkTests.test_sequential_clients) ... ok
+test_shutdown_with_stalled_client (__main__.NetworkTests.test_shutdown_with_stalled_client) ... ok
+test_stalled_client_timeout_and_recovery (__main__.NetworkTests.test_stalled_client_timeout_and_recovery) ... ok
+test_unavailable_server (__main__.NetworkTests.test_unavailable_server) ... ok
+test_unicode_message_uses_byte_length (__main__.NetworkTests.test_unicode_message_uses_byte_length) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 11.649s
