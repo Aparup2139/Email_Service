@@ -1,0 +1,9 @@
+Date: 2026-11-01T18:55:54.031361+05:30
+Command: ['make', 'clean']
+Exit: 0
+Elapsed seconds: 0.183
+
+STDOUT
+rm -rf -- build
+
+STDERR

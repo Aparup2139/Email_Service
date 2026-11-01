@@ -1,0 +1,8 @@
+Date: 2026-11-01T18:58:05.524167+05:30
+Command: ['gcc', '-D_POSIX_C_SOURCE=200809L', '-Iinclude', '-std=c11', '-Wall', '-Wextra', '-Wpedantic', '-fanalyzer', '-c', 'src/client.c', '-o', 'build/analysis/client.o']
+Exit: 0
+Elapsed seconds: 0.389
+
+STDOUT
+
+STDERR

@@ -1,0 +1,9 @@
+Date: 2026-11-01T18:55:53.724829+05:30
+Command: ['git', '--version']
+Exit: 0
+Elapsed seconds: 0.005
+
+STDOUT
+git version 2.43.0
+
+STDERR

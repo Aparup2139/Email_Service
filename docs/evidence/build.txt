@@ -1,0 +1,32 @@
+Date: 2026-11-01T18:56:07.298486+05:30
+Command: ['make', 'all', 'debug', 'sanitize']
+Exit: 0
+Elapsed seconds: 13.247
+
+STDOUT
+mkdir -p build/normal
+gcc -D_POSIX_C_SOURCE=200809L -Iinclude -std=c11 -Wall -Wextra -Wpedantic -O2 -MMD -MP -c src/server.c -o build/normal/server.o
+gcc -D_POSIX_C_SOURCE=200809L -Iinclude -std=c11 -Wall -Wextra -Wpedantic -O2 -MMD -MP -c src/net_io.c -o build/normal/net_io.o
+gcc build/normal/server.o build/normal/net_io.o   -o build/normal/server
+gcc -D_POSIX_C_SOURCE=200809L -Iinclude -std=c11 -Wall -Wextra -Wpedantic -O2 -MMD -MP -c src/client.c -o build/normal/client.o
+gcc build/normal/client.o build/normal/net_io.o   -o build/normal/client
+make MODE=debug all
+make[1]: Entering directory '/mnt/d/Emai_service_project'
+mkdir -p build/debug
+gcc -D_POSIX_C_SOURCE=200809L -Iinclude -std=c11 -Wall -Wextra -Wpedantic -O0 -g3 -MMD -MP -c src/server.c -o build/debug/server.o
+gcc -D_POSIX_C_SOURCE=200809L -Iinclude -std=c11 -Wall -Wextra -Wpedantic -O0 -g3 -MMD -MP -c src/net_io.c -o build/debug/net_io.o
+gcc build/debug/server.o build/debug/net_io.o   -o build/debug/server
+gcc -D_POSIX_C_SOURCE=200809L -Iinclude -std=c11 -Wall -Wextra -Wpedantic -O0 -g3 -MMD -MP -c src/client.c -o build/debug/client.o
+gcc build/debug/client.o build/debug/net_io.o   -o build/debug/client
+make[1]: Leaving directory '/mnt/d/Emai_service_project'
+make MODE=sanitize all
+make[1]: Entering directory '/mnt/d/Emai_service_project'
+mkdir -p build/sanitize
+gcc -D_POSIX_C_SOURCE=200809L -Iinclude -std=c11 -Wall -Wextra -Wpedantic -O1 -g3 -fsanitize=address,undefined -fno-sanitize-recover=all -fno-omit-frame-pointer -MMD -MP -c src/server.c -o build/sanitize/server.o
+gcc -D_POSIX_C_SOURCE=200809L -Iinclude -std=c11 -Wall -Wextra -Wpedantic -O1 -g3 -fsanitize=address,undefined -fno-sanitize-recover=all -fno-omit-frame-pointer -MMD -MP -c src/net_io.c -o build/sanitize/net_io.o
+gcc build/sanitize/server.o build/sanitize/net_io.o -fsanitize=address,undefined  -o build/sanitize/server
+gcc -D_POSIX_C_SOURCE=200809L -Iinclude -std=c11 -Wall -Wextra -Wpedantic -O1 -g3 -fsanitize=address,undefined -fno-sanitize-recover=all -fno-omit-frame-pointer -MMD -MP -c src/client.c -o build/sanitize/client.o
+gcc build/sanitize/client.o build/sanitize/net_io.o -fsanitize=address,undefined  -o build/sanitize/client
+make[1]: Leaving directory '/mnt/d/Emai_service_project'
+
+STDERR

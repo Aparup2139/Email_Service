@@ -1,0 +1,13 @@
+/build/
+__pycache__/
+*.pyc
+*.core
+core
+core.[0-9]*
+*.tmp
+*.swp
+*~
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

@@ -1,0 +1,9 @@
+Date: 2026-11-01T18:55:53.789828+05:30
+Command: ['uname', '-a']
+Exit: 0
+Elapsed seconds: 0.003
+
+STDOUT
+Linux LAPTOP-OO4SFC6S 6.6.87.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun  5 18:30:46 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux
+
+STDERR

@@ -1,0 +1,196 @@
+[
+  {
+    "name": "gcc-version",
+    "command": [
+      "gcc",
+      "--version"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 0.011,
+    "date": "2026-11-01T18:55:53.627615+05:30"
+  },
+  {
+    "name": "make-version",
+    "command": [
+      "make",
+      "--version"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 0.005,
+    "date": "2026-11-01T18:55:53.667985+05:30"
+  },
+  {
+    "name": "git-version",
+    "command": [
+      "git",
+      "--version"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 0.005,
+    "date": "2026-11-01T18:55:53.724829+05:30"
+  },
+  {
+    "name": "python-version",
+    "command": [
+      "python3",
+      "--version"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 0.002,
+    "date": "2026-11-01T18:55:53.761652+05:30"
+  },
+  {
+    "name": "linux-version",
+    "command": [
+      "uname",
+      "-a"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 0.003,
+    "date": "2026-11-01T18:55:53.789828+05:30"
+  },
+  {
+    "name": "ubuntu-version",
+    "command": [
+      "cat",
+      "/etc/os-release"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 0.002,
+    "date": "2026-11-01T18:55:53.829451+05:30"
+  },
+  {
+    "name": "clean",
+    "command": [
+      "make",
+      "clean"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 0.183,
+    "date": "2026-11-01T18:55:54.031361+05:30"
+  },
+  {
+    "name": "build",
+    "command": [
+      "make",
+      "all",
+      "debug",
+      "sanitize"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 13.247,
+    "date": "2026-11-01T18:56:07.298486+05:30"
+  },
+  {
+    "name": "normal-tests",
+    "command": [
+      "make",
+      "test"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 11.953,
+    "date": "2026-11-01T18:56:19.275674+05:30"
+  },
+  {
+    "name": "debug-tests",
+    "command": [
+      "make",
+      "MODE=debug",
+      "test"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 11.766,
+    "date": "2026-11-01T18:56:31.081052+05:30"
+  },
+  {
+    "name": "sanitize-tests",
+    "command": [
+      "make",
+      "MODE=sanitize",
+      "test"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 13.534,
+    "date": "2026-11-01T18:56:44.647913+05:30"
+  },
+  {
+    "name": "syntax-check",
+    "command": [
+      "gcc",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Iinclude",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-fanalyzer",
+      "-fsyntax-only",
+      "src/server.c",
+      "src/client.c",
+      "src/net_io.c"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 0.828,
+    "date": "2026-11-01T18:56:45.513650+05:30"
+  },
+  {
+    "name": "analysis-server",
+    "command": [
+      "gcc",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Iinclude",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-fanalyzer",
+      "-c",
+      "src/server.c",
+      "-o",
+      "build/analysis/server.o"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 0.632,
+    "date": "2026-11-01T18:58:05.106344+05:30"
+  },
+  {
+    "name": "analysis-client",
+    "command": [
+      "gcc",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Iinclude",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-fanalyzer",
+      "-c",
+      "src/client.c",
+      "-o",
+      "build/analysis/client.o"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 0.389,
+    "date": "2026-11-01T18:58:05.524167+05:30"
+  },
+  {
+    "name": "analysis-net_io",
+    "command": [
+      "gcc",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Iinclude",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-fanalyzer",
+      "-c",
+      "src/net_io.c",
+      "-o",
+      "build/analysis/net_io.o"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 0.575,
+    "date": "2026-11-01T18:58:06.126515+05:30"
+  }
+]

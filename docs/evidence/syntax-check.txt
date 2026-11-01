@@ -1,0 +1,8 @@
+Date: 2026-11-01T18:56:45.513650+05:30
+Command: ['gcc', '-D_POSIX_C_SOURCE=200809L', '-Iinclude', '-std=c11', '-Wall', '-Wextra', '-Wpedantic', '-fanalyzer', '-fsyntax-only', 'src/server.c', 'src/client.c', 'src/net_io.c']
+Exit: 0
+Elapsed seconds: 0.828
+
+STDOUT
+
+STDERR

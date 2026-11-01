@@ -1,0 +1,32 @@
+Date: 2026-11-01T18:56:31.081052+05:30
+Command: ['make', 'MODE=debug', 'test']
+Exit: 0
+Elapsed seconds: 11.766
+
+STDOUT
+python3 tests/test_network.py --bin-dir build/debug 
+
+STDERR
+test_binary_payload_one_buffer (__main__.NetworkTests.test_binary_payload_one_buffer) ... ok
+test_clean_eof_and_truncated_frames (__main__.NetworkTests.test_clean_eof_and_truncated_frames) ... ok
+test_client_receive_timeout (__main__.NetworkTests.test_client_receive_timeout) ... ok
+test_fragmented_frame (__main__.NetworkTests.test_fragmented_frame) ... ok
+test_help (__main__.NetworkTests.test_help) ... ok
+test_idle_shutdown (__main__.NetworkTests.test_idle_shutdown) ... ok
+test_invalid_arguments (__main__.NetworkTests.test_invalid_arguments) ... ok
+test_invalid_frame_lengths (__main__.NetworkTests.test_invalid_frame_lengths) ... ok
+test_malformed_responses (__main__.NetworkTests.test_malformed_responses) ... ok
+test_minimum_and_maximum_payload (__main__.NetworkTests.test_minimum_and_maximum_payload) ... ok
+test_mismatched_response (__main__.NetworkTests.test_mismatched_response) ... ok
+test_port_already_in_use (__main__.NetworkTests.test_port_already_in_use) ... ok
+test_reset_before_reading_response (__main__.NetworkTests.test_reset_before_reading_response) ... ok
+test_sequential_clients (__main__.NetworkTests.test_sequential_clients) ... ok
+test_shutdown_with_stalled_client (__main__.NetworkTests.test_shutdown_with_stalled_client) ... ok
+test_stalled_client_timeout_and_recovery (__main__.NetworkTests.test_stalled_client_timeout_and_recovery) ... ok
+test_unavailable_server (__main__.NetworkTests.test_unavailable_server) ... ok
+test_unicode_message_uses_byte_length (__main__.NetworkTests.test_unicode_message_uses_byte_length) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 11.354s
+
+OK
